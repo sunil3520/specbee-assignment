@@ -154,11 +154,13 @@ body {
     top: 50%;
     left: -5%;
     border-radius: 50%;
-    padding: 10px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 5px 10px;
     cursor: pointer;
     font-weight: bold;
     color: #DADADA;
+    background-color:  white;
+    border: 0.5px solid rgb(241, 236, 236);
+    cursor: pointer;
 }
 
 .right-arrow {
@@ -166,11 +168,12 @@ body {
     top: 50%;
     right: -5%;
     border-radius: 50%;
-    padding: 10px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    cursor: pointer;
+    padding: 5px 10px;
     font-weight: bold;
     color: #DADADA;
+    background-color: white;
+    border: 0.5px solid rgb(241, 236, 236);
+    cursor: pointer;
 }
 
 
