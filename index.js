@@ -6,6 +6,8 @@ const speakerDetails_container = document.querySelector('.speaker-details');
 const displaySpeakerDetails = (speaker) => {
     speakerDetails_container.innerHTML = null;
     speakerDetails_container.style.boxShadow = "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"
+    speakerDetails_container.style.padding = '36px 30px'
+    speakerDetails_container.style.marginBottom = '20px'
     console.log(speaker)
     let figure = document.createElement('figure');
     figure.classList = 'speaker-details__figure'
@@ -49,6 +51,8 @@ const displaySpeakerDetails = (speaker) => {
 
 }
 
+
+
 const displaySpeakers = (speakers) => {
     let leftArrow = document.createElement('div');
     let RightArrow = document.createElement('div');
@@ -65,9 +69,18 @@ const displaySpeakers = (speakers) => {
     const speakersContainer = document.querySelector('.speakers-container-parent');
     speakersContainer.append(leftArrow, RightArrow);
 
+    const getVisibility = () =>{
+        if(window.innerWidth <=480) return 1;
+        if(window.innerWidth <=768) return 2;
+        if(window.innerWidth <=1024) return 3;
+        return 4;
+    }
+
+    
+
     const updateSpeakers = () =>{
         speakersContainer.querySelectorAll('.speakers-container__figure').forEach(figure => figure.remove());
-        speakers.slice(i,i+4).forEach((speaker) => {
+        speakers.slice(i,i+getVisibility()).forEach((speaker) => {
             let figure = document.createElement('figure');
             figure.addEventListener('click', () => {
                 displaySpeakerDetails(speaker)
@@ -97,8 +110,8 @@ const displaySpeakers = (speakers) => {
 
 
     RightArrow.addEventListener('click',()=>{
-       if(i+4<speakers.length){
-        i+=4;
+       if(i+getVisibility()<speakers.length){
+        i+=getVisibility();
         updateSpeakers();
        }else{
         // i=0
@@ -109,7 +122,7 @@ const displaySpeakers = (speakers) => {
 
     leftArrow.addEventListener('click',()=>{
         if(i>0){
-            i-=4;
+            i-=getVisibility();
           updateSpeakers()
         }else{
             // i =speakers.length-1
@@ -119,5 +132,9 @@ const displaySpeakers = (speakers) => {
 
 
 }
+
+window.addEventListener('resize',()=>{
+    displaySpeakers(speakers);
+})
 
 displaySpeakers(speakers)
